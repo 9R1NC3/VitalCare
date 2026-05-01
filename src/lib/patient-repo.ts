@@ -78,7 +78,10 @@ export async function recordTemperature(patientId: string, temperature: number) 
       return { ok: false, message: "Patient not found." };
     }
 
-    const patient = toPatient(snap.id, snap.data());
+   const data = snap.data();
+   if (!data) return; 
+   const patient = toPatient(snap.id, data);
+   
     if (patient.status === "DISCHARGED") {
       return { ok: false, message: "Cannot record temperature for a discharged patient." };
     }
@@ -113,7 +116,9 @@ export async function markDoctorVisit(patientId: string) {
       return { ok: false, message: "Patient not found." };
     }
 
-    const patient = toPatient(snap.id, snap.data());
+    const data = snap.data();
+if (!data) return;
+const patient = toPatient(snap.id, data);
     if (patient.status === "DISCHARGED") {
       return { ok: false, message: "Patient already discharged." };
     }
@@ -145,7 +150,9 @@ export async function dischargePatient(patientId: string) {
       return { ok: false, message: "Patient not found." };
     }
 
-    const patient = toPatient(snap.id, snap.data());
+    const data = snap.data();
+if (!data) return;
+const patient = toPatient(snap.id, data);
     if (patient.status !== "READY_FOR_DISCHARGE") {
       return { ok: false, message: "Patient is not ready for discharge." };
     }

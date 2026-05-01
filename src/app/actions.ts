@@ -33,7 +33,7 @@ export async function recordTemperatureAction(
   revalidatePath("/nurse");
   revalidatePath("/doctor");
   revalidatePath("/admin");
-  return result;
+  return result ?? { ok: false, message: "Unknown error occurred." };
 }
 
 export async function markDoctorVisitAction(
@@ -48,7 +48,7 @@ export async function markDoctorVisitAction(
   const result = await markDoctorVisit(patientId);
   revalidatePath("/doctor");
   revalidatePath("/admin");
-  return result;
+  return result ?? { ok: false, message: "Unknown error occurred." };
 }
 
 export async function dischargePatientAction(
@@ -64,7 +64,7 @@ export async function dischargePatientAction(
   revalidatePath("/admin");
   revalidatePath("/nurse");
   revalidatePath("/doctor");
-  return result;
+  return result ?? { ok: false, message: "Unknown error occurred." };
 }
 
 export async function addPatientAction(
@@ -81,5 +81,5 @@ export async function addPatientAction(
   const result = await addPatient(name, roomNumber);
   revalidatePath("/admin");
   revalidatePath("/nurse");
-  return result;
+  return result ?? { ok: false, message: "Unknown error occurred." };
 }
