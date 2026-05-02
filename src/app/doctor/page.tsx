@@ -4,6 +4,7 @@ import { RowActionForm } from "@/components/row-action-form";
 import { StatusBadge } from "@/components/status-badge";
 import { todayISODate } from "@/lib/date";
 import { getPatients } from "@/lib/patient-repo";
+export const dynamic = "force-dynamic";
 
 export default async function DoctorPage() {
   const patients = await getPatients();

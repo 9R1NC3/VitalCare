@@ -6,6 +6,7 @@ import { StatCard } from "@/components/stat-card";
 import { StatusBadge } from "@/components/status-badge";
 import { MAX_CAPACITY } from "@/lib/constants";
 import { getOccupancyStats, getPatients } from "@/lib/patient-repo";
+export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
   const [patients, stats] = await Promise.all([getPatients(), getOccupancyStats()]);
